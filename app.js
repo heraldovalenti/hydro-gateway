@@ -3,12 +3,12 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const querystring = require("node:querystring");
 
 const app = express();
-const BASE_URL = process.env.BASE_URL || "http://34.71.43.139:8080";
+const API_URL = process.env.API_URL;
 
 app.use(
   "/api",
   createProxyMiddleware({
-    target: BASE_URL,
+    target: API_URL,
     changeOrigin: true,
     onProxyRes: (proxyReq, req, res) => {
       const { query, path } = req;
