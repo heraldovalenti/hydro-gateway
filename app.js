@@ -8,17 +8,19 @@ const API_URL = process.env.API_URL;
 app.use(
   "/api",
   createProxyMiddleware({
-    target: API_URL,
+    target: `${API_URL}/api`,
     changeOrigin: true,
-    onProxyRes: (proxyReq, req, res) => {
-      const { query, path } = req;
-      const { statusCode } = res;
-      const queryString = querystring.stringify(query);
-      console.log(
-        `request processed: [${statusCode}] ${path}${
-          queryString ? `?${queryString}` : ""
-        }`
-      );
+    on: {
+      proxyRes: (proxyReq, req, res) => {
+        const { query, path } = req;
+        const { statusCode } = res;
+        const queryString = querystring.stringify(query);
+        console.log(
+          `request processed: [${statusCode}] ${path}${
+            queryString ? `?${queryString}` : ""
+          }`
+        );
+      },
     },
   })
 );
