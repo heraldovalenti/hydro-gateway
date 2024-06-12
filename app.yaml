@@ -4,6 +4,7 @@ instance_class: F1
 
 env_variables:
   API_URL: "https://saltaalertas.aesandes.com"
+  RP5_URL: "https://rp5.ru"
 
 automatic_scaling:
   max_instances: 1
