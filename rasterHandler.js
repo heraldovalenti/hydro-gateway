@@ -16,7 +16,7 @@ const rasterHandler = async (req, res) => {
   const cachedResponse = get(requestHash);
   if (cachedResponse) {
     console.log("cache hit", { path, query });
-    res.send({ data: cachedResponse });
+    res.send(cachedResponse);
     return;
   }
 
@@ -27,9 +27,7 @@ const rasterHandler = async (req, res) => {
   set(requestHash, data);
   console.log("request cached", { path, query });
 
-  res.status(200).send({
-    data,
-  });
+  res.status(200).send(data);
 };
 
 module.exports = { rasterHandler };
