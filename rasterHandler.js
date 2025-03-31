@@ -8,6 +8,9 @@ const rasterClient = axios.create({
 });
 
 const rasterHandler = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET");
+  res.set("Access-Control-Allow-Headers", "Authorization");
   const { query, path } = req;
   const requestHash = hashRequest(req);
   const cachedResponse = get(requestHash);
